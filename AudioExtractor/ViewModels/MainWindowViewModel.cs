@@ -46,7 +46,6 @@ namespace AudioExtractor.ViewModels
             set { SetValue(TargetFolderPathProperty, value); }
         }
 
-        // Using a DependencyProperty as the backing store for TargetFolderPath.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TargetFolderPathProperty =
             DependencyProperty.Register("TargetFolderPath", typeof(string), typeof(MainWindowViewModel), new PropertyMetadata(default(string)));
 
@@ -64,7 +63,10 @@ namespace AudioExtractor.ViewModels
             StartConversionCommand = new DelegateCommand(async () => await ConvertFiles(), () => !IsConversionInProgress);
             BrowseTargetFolderCommand = new DelegateCommand(() => BrowseTargetFolder(), () => !IsConversionInProgress);
 
-            TargetFolderPath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Output");
+            if (string.IsNullOrEmpty(Properties.Settings.Default.TargetFolderPath))
+                Properties.Settings.Default.TargetFolderPath = Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Output");
+
+            TargetFolderPath = Properties.Settings.Default.TargetFolderPath;
         }
 
         public void AddFileList(string[] fileList)
@@ -118,6 +120,7 @@ namespace AudioExtractor.ViewModels
                 return;
 
             TargetFolderPath = dialog.SelectedPath;
+            Properties.Settings.Default.TargetFolderPath = TargetFolderPath;
         }
     }
 }

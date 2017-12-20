@@ -33,6 +33,8 @@ namespace AudioExtractor
             // which must be cleared before filling up the list box with real data
             InputItemListBox.Items.Clear();
             InputItemListBox.ItemsSource = m_viewModel.InputItems;
+
+            Closing += (o, e) => { Properties.Settings.Default.Save(); };
         }
 
         private void InputItemListBox_Drop(object sender, DragEventArgs e)
@@ -43,5 +45,7 @@ namespace AudioExtractor
             var fileList = e.Data.GetData("FileDrop");
             m_viewModel.AddFileList(fileList as string[]);
         }
+
+        
     }
 }

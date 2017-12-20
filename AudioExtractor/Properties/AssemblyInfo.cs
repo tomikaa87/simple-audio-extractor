@@ -10,9 +10,9 @@ using System.Windows;
 [assembly: AssemblyTitle("AudioExtractor")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("ToMikaa")]
 [assembly: AssemblyProduct("AudioExtractor")]
-[assembly: AssemblyCopyright("Copyright ©  2017")]
+[assembly: AssemblyCopyright("Copyright © ToMikaa - 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
