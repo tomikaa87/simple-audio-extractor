@@ -34,7 +34,7 @@ namespace AudioExtractor.Models
             var fileInfo = new FileInfo(filePath);
 
             FilePath = filePath;
-            FileName = fileInfo.Name;
+            FileName = Path.GetFileNameWithoutExtension(fileInfo.Name);
             FileExtension = fileInfo.Extension.Remove(0, 1).ToUpper();
             ContainerDirectory = fileInfo.Directory.FullName;
             FileSize = fileInfo.Length;
